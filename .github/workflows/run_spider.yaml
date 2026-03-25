@@ -28,6 +28,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
         with:
+          name: latest
           make_latest: true
           files: |
             *.rss
