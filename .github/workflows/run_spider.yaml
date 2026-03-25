@@ -22,8 +22,8 @@ jobs:
       - name: Run spider
         run: |
           #scrapy crawl hodyna-melomana
-          touch test1.rss
-          touch test2.rss
+          echo "1" > test1.rss
+          echo "2" > test2.rss
       - name: Release RSS feeds
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
