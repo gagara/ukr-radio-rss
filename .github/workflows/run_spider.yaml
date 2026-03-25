@@ -18,8 +18,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run spider
         run: |
-          curl -v https://google.com
-          curl -v https://ukr.radio
+          scrapy crawl hodyna-melomana
       - name: Upload RSS feeds
         uses: actions/upload-artifact@v4
         with:
