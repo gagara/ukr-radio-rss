@@ -18,7 +18,9 @@ jobs:
           pip install -r requirements.txt
       - name: Run spider
         run: |
-          scrapy crawl hodyna-melomana
+          #scrapy crawl hodyna-melomana
+          touch test1.rss
+          touch test2.rss
       - name: Upload RSS feeds
         uses: actions/upload-artifact@v4
         with:
