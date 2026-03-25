@@ -1,7 +1,9 @@
 name: Release scrap
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - latest
 
 jobs:
   build:
@@ -11,6 +13,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: 'latest'
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -23,7 +27,7 @@ jobs:
         run: |
           #scrapy crawl hodyna-melomana
           echo "1" > test1.rss
-          echo "2" > test2.rss
+          echo `date` > test2.rss
       - name: Release RSS feeds
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
