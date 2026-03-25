@@ -1,6 +1,9 @@
 name: Spyder Test
 
-on: [push]
+on:
+  push:
+    tags:
+      - "scrap-*"
 
 jobs:
   build:
@@ -23,8 +26,8 @@ jobs:
           touch test2.rss
       - name: Release RSS feeds
         uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
         with:
-          name: Relese ${{ env.NOW }}
           make_latest: true
           files: |
             *.rss
