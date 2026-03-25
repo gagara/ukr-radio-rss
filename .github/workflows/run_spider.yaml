@@ -21,8 +21,10 @@ jobs:
           #scrapy crawl hodyna-melomana
           touch test1.rss
           touch test2.rss
-      - name: Upload RSS feeds
-        uses: actions/upload-artifact@v4
+      - name: Release RSS feeds
+        uses: softprops/action-gh-release@v2
         with:
-          path: |
+          name: Relese ${{ env.NOW }}
+          make_latest: true
+          files: |
             *.rss
