@@ -1,6 +1,9 @@
 # vim
 .vim/
 
+# generated RSS feeds
+*.rss
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
