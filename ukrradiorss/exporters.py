@@ -20,6 +20,7 @@ class RssExporter(XmlItemExporter):
         self.docs = "https://www.rssboard.org/rss-specification"
         self.generator = "scrapy"
         self.managingEditor = kwargs.pop('managingEditor')
+        self.author = kwargs.pop('author')
         self.copyRight = kwargs.pop('copyRight')
 
         kwargs['root_element'] = 'rss'
@@ -59,6 +60,8 @@ class RssExporter(XmlItemExporter):
         self._export_xml_field('generator', self.generator, 2)
         if self.managingEditor:
             self._export_xml_field('managingEditor', self.managingEditor, 2)
+        if self.author:
+            self._export_xml_field('author', self.author, 2)
         if self.copyRight:
             self._export_xml_field('copyright', self.copyRight, 2)
         self._beautify_indent(2)

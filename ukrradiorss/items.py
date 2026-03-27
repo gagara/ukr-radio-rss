@@ -20,6 +20,7 @@ class ChannelItem(scrapy.Item):
     pubDate = scrapy.Field(serializer=rfc822_date)
     lastBuildDate = scrapy.Field(serializer=rfc822_date)
     managingEditor = scrapy.Field()
+    author = scrapy.Field()
     copyRight = scrapy.Field()
 
 class RssItem(scrapy.Item):

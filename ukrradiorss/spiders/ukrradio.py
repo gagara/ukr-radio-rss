@@ -30,6 +30,8 @@ class UkrRadioSpider(scrapy.Spider):
             image=urljoin(response.url, self._extract(
                 response, "div.prog-preview img::attr(src)")),
             managingEditor="ua.info@suspilne.media",
+            author=self._extract(
+                response, "div.program-item-controls div::attr(data-media-channel)"),
             copyRight="https://ukr.radio/",
         )
         yield channel
@@ -41,8 +43,8 @@ class UkrRadioSpider(scrapy.Spider):
                         i, "div.program-item-content div.program-date::text"),
                     link=urljoin(response.url, self._extract(
                         i, "div.program-item-controls div::attr(data-media-period-item-url)")),
-                    description=self._extract(
-                        i, "div.program-item-content div:nth-of-type(3)"),
+                    description=self._extract(i, "div.program-item-content div:nth-of-type(3)") + ' (' + self._extract(
+                        i, "div.program-item-content div:nth-of-type(4)::text") + ' ' + self._extract(i, "div.program-item-content div:nth-of-type(4) a.program-speaker::text") + ')',
                     language="uk-UA",
                     pubDate=datetime.strptime(self._extract(
                         i, "div.program-item-content div.program-date::text"), self.date_format),
@@ -55,7 +57,7 @@ class UkrRadioSpider(scrapy.Spider):
                 yield item
 
             # navigate next page
-            curr_page = self._extract(
-                response, "div.btn-pagination ul li.current a::text")
-            if curr_page.isdigit():
-                yield response.follow(response.url + "&page=" + str(int(curr_page) + 1), self.parse)
+            # curr_page = self._extract(
+            #     response, "div.btn-pagination ul li.current a::text")
+            # if curr_page.isdigit():
+            #     yield response.follow(response.url + "&page=" + str(int(curr_page) + 1), self.parse)

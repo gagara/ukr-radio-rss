@@ -35,6 +35,7 @@ class RssOutputPipeline:
             pubDate=item.get("pubDate", None),
             lastBuildDate=item.get("lastBuildDate", None),
             managingEditor=item.get("managingEditor", None),
+            author=item.get("author", None),
             copyRight=item.get("copyRight", None)
         )
         self.exporter.start_exporting()
