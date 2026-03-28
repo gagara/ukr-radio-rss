@@ -57,7 +57,7 @@ class UkrRadioSpider(scrapy.Spider):
                 yield item
 
             # navigate next page
-            # curr_page = self._extract(
-            #     response, "div.btn-pagination ul li.current a::text")
-            # if curr_page.isdigit():
-            #     yield response.follow(response.url + "&page=" + str(int(curr_page) + 1), self.parse)
+            curr_page = self._extract(
+                response, "div.btn-pagination ul li.current a::text")
+            if curr_page.isdigit():
+                yield response.follow(response.url + "&page=" + str(int(curr_page) + 1), self.parse)
