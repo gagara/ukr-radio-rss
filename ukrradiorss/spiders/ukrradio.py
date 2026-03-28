@@ -60,4 +60,4 @@ class UkrRadioSpider(scrapy.Spider):
             curr_page = self._extract(
                 response, "div.btn-pagination ul li.current a::text")
             if curr_page.isdigit():
-                yield response.follow(response.url + "&page=" + str(int(curr_page) + 1), self.parse)
+                yield response.follow(response.url.split('&')[0] + "&page=" + str(int(curr_page) + 1), self.parse)
